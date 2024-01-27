@@ -41,29 +41,67 @@ const graph = new SVG_Graph({
   },
 });
 
-// Equilibrium constant function
-function equilibriumConstant(T) {
+// Assuming you have already created the graph instance (named 'graph')
+
+// Equilibrium conversion calculated from equilibrium constant
+function equilibriumConversionFromKe(T) {
   const Km = 0.01; // Equilibrium constant at reference temperature
   const deltaH = -50000; // Heat of reaction (J/mol)
   const R = 8.314; // Ideal gas constant (J/(mol K))
   const Tm = 500; // Reference temperature (K)
 
   const Ke = Km * Math.exp((deltaH / R) * (1 / Tm - 1 / T));
-  return Ke;
+  return Ke / (1 + Ke);
 }
 
-// Curve options for equilibrium constant
-const equilibriumConstantOptions = {
+// Equilibrium conversion calculated from energy balance
+function equilibriumConversionFromEnergyBalance(T) {
+  const alpha = 1; // Adjust as needed
+  const Cp = 50; // Adjust as needed
+  const deltaH = -50000; // Heat of reaction (J/mol)
+  const Tf = 300; // Feed temperature (K)
+
+  const Xeb = (alpha * Cp * (T - Tf)) / -deltaH;
+  return Xeb;
+}
+
+// Curve options for equilibrium conversion from Ke
+const equilibriumConversionFromKeOptions = {
   stroke: "rgba(0, 0, 0, 1)",
   strokeWidth: 2,
   resolution: 100,
   fill: "none",
-  id: "equilibrium-constant-curve",
-  classList: ["equilibrium-curve"],
+  id: "equilibrium-conversion-from-ke-curve",
+  classList: ["equilibrium-conversion-curve"],
 };
 
-// Add the equilibrium constant curve to the graph
-const equilibriumConstantCurve = graph.addCurve(
-  equilibriumConstant,
-  equilibriumConstantOptions
+// Curve options for equilibrium conversion from energy balance
+const equilibriumConversionFromEnergyBalanceOptions = {
+  stroke: "rgba(0, 0, 255, 1)",
+  strokeWidth: 2,
+  resolution: 100,
+  fill: "none",
+  id: "equilibrium-conversion-from-energy-balance-curve",
+  classList: ["equilibrium-conversion-curve"],
+};
+
+// Add the equilibrium conversion curves to the graph
+const equilibriumConversionFromKeCurve = graph.addCurve(
+  equilibriumConversionFromKe,
+  equilibriumConversionFromKeOptions
 );
+const equilibriumConversionFromEnergyBalanceCurve = graph.addCurve(
+  equilibriumConversionFromEnergyBalance,
+  equilibriumConversionFromEnergyBalanceOptions
+);
+
+// Functions that update the graph based on the sliders
+function updateFeedTemperature(feedTemperature) {
+  // Update the graph with the new feed temperature
+  // Adjust the energy balance curve options
+  equilibriumConversionFromEnergyBalanceOptions.Tf = feedTemperature;
+
+  // Redraw the energy balance curve
+  equilibriumConversionFromEnergyBalanceCurve.updateCoords();
+  equilibriumConversionFromEnergyBalanceCurve.drawCurve();
+}
