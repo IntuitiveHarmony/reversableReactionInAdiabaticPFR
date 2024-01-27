@@ -41,8 +41,6 @@ const graph = new SVG_Graph({
   },
 });
 
-// Assuming you have already created the graph instance (named 'graph')
-
 // Equilibrium conversion calculated from equilibrium constant
 function equilibriumConversionFromKe(T) {
   const Km = 0.01; // Equilibrium constant at reference temperature
@@ -54,16 +52,28 @@ function equilibriumConversionFromKe(T) {
   return Ke / (1 + Ke);
 }
 
+let Tf = 300;
 // Equilibrium conversion calculated from energy balance
 function equilibriumConversionFromEnergyBalance(T) {
   const alpha = 1; // Adjust as needed
   const Cp = 50; // Adjust as needed
   const deltaH = -50000; // Heat of reaction (J/mol)
-  const Tf = 300; // Feed temperature (K)
+  // const Tf = 300; // Feed temperature (K)
 
   const Xeb = (alpha * Cp * (T - Tf)) / -deltaH;
   return Xeb;
 }
+// function equilibriumConversionFromEnergyBalance(T, Tf) {
+//   const alpha = 1; // Adjust as needed
+//   const Cp = 50; // Adjust as needed
+//   const deltaH = -50000; // Heat of reaction (J/mol)
+
+//   const Xeb = (alpha * Cp * (T - Tf)) / -deltaH;
+
+//   console.log("T:", T, "Tf:", Tf, "Xeb:", Xeb); // Log the values
+
+//   return Xeb;
+// }
 
 // Curve options for equilibrium conversion from Ke
 const equilibriumConversionFromKeOptions = {
@@ -99,9 +109,11 @@ const equilibriumConversionFromEnergyBalanceCurve = graph.addCurve(
 function updateFeedTemperature(feedTemperature) {
   // Update the graph with the new feed temperature
   // Adjust the energy balance curve options
-  equilibriumConversionFromEnergyBalanceOptions.Tf = feedTemperature;
+  Tf = feedTemperature;
 
   // Redraw the energy balance curve
   equilibriumConversionFromEnergyBalanceCurve.updateCoords();
   equilibriumConversionFromEnergyBalanceCurve.drawCurve();
 }
+
+window.updateFeedTemperature = updateFeedTemperature;

@@ -6,7 +6,7 @@ function setup() {
   createCanvas(400, 50).parent("slider-container");
 
   // Create the slider and set its initial value
-  feedTemperatureSlider = createSlider(300, 550, 300);
+  feedTemperatureSlider = createSlider(300, 400, 325);
   feedTemperatureSlider.position(10, 10);
   feedTemperatureSlider.style("width", "380px");
 }
@@ -21,6 +21,5 @@ function draw() {
 
   // Update the graph based on the slider value
   const feedTemperature = feedTemperatureSlider.value();
-  console.log(feedTemperature);
   updateFeedTemperature(feedTemperature);
 }
