@@ -8,8 +8,9 @@ const graph = new SVG_Graph({
   titleFontSize: 20, // font size of title, pixels
   padding: [
     [60, 20],
-    [60, 50],
+    [30, 50],
   ], // amount of padding (pixels) around the [[left, right], [top, bottom]] axes.
+  // parent: document.getElementById("defaultCanvas0"), // the element to place the plot within.  If a parent is specified (besides document.body), the plot size will be 100% of parent's width and height.
   parent: document.getElementById("graph-container"), // the element to place the plot within.  If a parent is specified (besides document.body), the plot size will be 100% of parent's width and height.
   // parent: document.body, // the element to place the plot within.  If a parent is specified (besides document.body), the plot size will be 100% of parent's width and height.
   axes: {

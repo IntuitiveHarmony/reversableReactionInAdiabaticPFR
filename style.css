@@ -1,8 +1,18 @@
-/* body {
-  padding: 3em;
-} */
-
+body {
+  padding: 1em;
+}
+h1 {
+  font-size: 1.5em;
+}
+.svg-plot {
+  margin-top: 10em;
+}
+#slider-container {
+  /* margin-top: 1em; */
+  z-index: 10;
+}
 #graph-container {
+  /* margin-top: 1em; */
   width: 35em;
   height: 25em;
 }

@@ -3,11 +3,10 @@ let feedTemperatureSlider;
 
 function setup() {
   // Create a canvas to contain the slider
-  createCanvas(600, 50).parent("slider-container");
+  createCanvas(600, 50).parent("graph-container");
 
   // Create the slider and set its initial value
-  feedTemperatureSlider = createSlider(300, 400, 325);
-  feedTemperatureSlider.position(10, 10);
+  feedTemperatureSlider = createSlider(300, 400, 325).parent("graph-container");
   feedTemperatureSlider.style("width", "380px");
 }
 
