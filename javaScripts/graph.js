@@ -1,13 +1,17 @@
+// variable for the Feed temperature of the graph
+let Tf = 325;
+
 const graph = new SVG_Graph({
   id: "svg-plot-0", // id of the container element
   classList: ["svg-plot"], // classes to add to the plot container element
   title: "", // text above the plot
   titleFontSize: 20, // font size of title, pixels
   padding: [
-    [70, 20],
-    [40, 50],
+    [60, 20],
+    [60, 50],
   ], // amount of padding (pixels) around the [[left, right], [top, bottom]] axes.
-  parent: document.body, // the element to place the plot within.  If a parent is specified (besides document.body), the plot size will be 100% of parent's width and height.
+  parent: document.getElementById("graph-container"), // the element to place the plot within.  If a parent is specified (besides document.body), the plot size will be 100% of parent's width and height.
+  // parent: document.body, // the element to place the plot within.  If a parent is specified (besides document.body), the plot size will be 100% of parent's width and height.
   axes: {
     axesStrokeWidth: 0.5, // stroke width of the axes lines: the vertical and horizontal x and y-axes (px)
     x: {
@@ -43,7 +47,7 @@ const graph = new SVG_Graph({
 
 // Equilibrium conversion calculated from equilibrium constant
 function equilibriumConversionFromKe(T) {
-  const Km = 0.01; // Equilibrium constant at reference temperature
+  const Km = 0.12; // Equilibrium constant at reference temperature
   const deltaH = -50000; // Heat of reaction (J/mol)
   const R = 8.314; // Ideal gas constant (J/(mol K))
   const Tm = 500; // Reference temperature (K)
@@ -52,28 +56,15 @@ function equilibriumConversionFromKe(T) {
   return Ke / (1 + Ke);
 }
 
-let Tf = 300;
 // Equilibrium conversion calculated from energy balance
 function equilibriumConversionFromEnergyBalance(T) {
   const alpha = 1; // Adjust as needed
   const Cp = 50; // Adjust as needed
   const deltaH = -50000; // Heat of reaction (J/mol)
-  // const Tf = 300; // Feed temperature (K)
 
   const Xeb = (alpha * Cp * (T - Tf)) / -deltaH;
   return Xeb;
 }
-// function equilibriumConversionFromEnergyBalance(T, Tf) {
-//   const alpha = 1; // Adjust as needed
-//   const Cp = 50; // Adjust as needed
-//   const deltaH = -50000; // Heat of reaction (J/mol)
-
-//   const Xeb = (alpha * Cp * (T - Tf)) / -deltaH;
-
-//   console.log("T:", T, "Tf:", Tf, "Xeb:", Xeb); // Log the values
-
-//   return Xeb;
-// }
 
 // Curve options for equilibrium conversion from Ke
 const equilibriumConversionFromKeOptions = {
@@ -115,5 +106,5 @@ function updateFeedTemperature(feedTemperature) {
   equilibriumConversionFromEnergyBalanceCurve.updateCoords();
   equilibriumConversionFromEnergyBalanceCurve.drawCurve();
 }
-
+// Pass the function to the draw
 window.updateFeedTemperature = updateFeedTemperature;

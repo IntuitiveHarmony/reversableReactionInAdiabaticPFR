@@ -3,7 +3,7 @@ let feedTemperatureSlider;
 
 function setup() {
   // Create a canvas to contain the slider
-  createCanvas(400, 50).parent("slider-container");
+  createCanvas(600, 50).parent("slider-container");
 
   // Create the slider and set its initial value
   feedTemperatureSlider = createSlider(300, 400, 325);
@@ -13,7 +13,7 @@ function setup() {
 
 function draw() {
   // Clear the background
-  background(220);
+  background(255);
 
   // Display the slider value
   fill(0);
