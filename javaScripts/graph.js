@@ -1,5 +1,7 @@
 // variable for the Feed temperature of the graph
 let Tf = 325;
+// variable for the Molar Ratio of the graph
+let Mr = 0.1;
 
 const graph = new SVG_Graph({
   id: "svg-plot-0", // id of the container element
@@ -63,7 +65,7 @@ function equilibriumConversionFromEnergyBalance(T) {
   const Cp = 50; // Adjust as needed
   const deltaH = -50000; // Heat of reaction (J/mol)
 
-  const Xeb = (alpha * Cp * (T - Tf)) / -deltaH;
+  const Xeb = ((alpha + Mr) * Cp * (T - Tf)) / -deltaH;
   return Xeb;
 }
 
@@ -106,6 +108,24 @@ function updateFeedTemperature(feedTemperature) {
   // Redraw the energy balance curve
   equilibriumConversionFromEnergyBalanceCurve.updateCoords();
   equilibriumConversionFromEnergyBalanceCurve.drawCurve();
+
+  // Update the HTML with value
+  document.getElementById("temperatureValue").innerText =
+    "Feed Temperature: " + feedTemperature + " (K)";
+}
+function updateMolarRatio(molarRatio) {
+  // Update the graph with the new feed temperature
+  // Adjust the energy balance curve options
+  Mr = molarRatio;
+
+  // Redraw the energy balance curve
+  equilibriumConversionFromEnergyBalanceCurve.updateCoords();
+  equilibriumConversionFromEnergyBalanceCurve.drawCurve();
+
+  // Update the HTML with value
+  document.getElementById("molarRatioValue").innerText =
+    "Molar Ratio of Inert to Reactant in Feed: " + molarRatio;
 }
 // Pass the function to the draw
-window.updateFeedTemperature = updateFeedTemperature;
+// window.updateFeedTemperature = updateFeedTemperature;
+// window.updateMolarRatio = updateMolarRatio;
