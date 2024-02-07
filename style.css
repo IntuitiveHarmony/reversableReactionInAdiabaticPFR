@@ -33,3 +33,30 @@ h1 {
   display: block;
   width: 300px;
 }
+.hide {
+  display: none;
+}
+.close-button {
+  cursor: pointer;
+  display: flex;
+  align-self: flex-end;
+}
+.modal {
+  width: 50%;
+  height: auto; /* Set height to auto for dynamic sizing based on content */
+  padding: 1.5em;
+  margin: 2em;
+  border: 3px solid #ccc;
+  background-color: rgb(255, 255, 255);
+  z-index: 2;
+  display: block;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+  z-index: 1;
+}
