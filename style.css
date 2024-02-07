@@ -43,12 +43,10 @@ h1 {
   right: 10px; /* Adjust as needed */
 }
 .modal {
-  /* display: flex;
-  flex-direction: column; */
-  width: 50%;
+  max-width: 40em;
   height: auto; /* Set height to auto for dynamic sizing based on content */
   padding: 1.5em;
-  margin: 2em;
+  margin: 2.3em;
   border: 3px solid #ccc;
   background-color: rgb(255, 255, 255);
   z-index: 2;
