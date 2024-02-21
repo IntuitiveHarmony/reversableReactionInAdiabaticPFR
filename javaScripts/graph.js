@@ -1,3 +1,32 @@
+// Constants for the graphs with reaction conditional
+let reaction = true; // true-exothermic false-endothermic
+
+let Km = 0.12; // Equilibrium constant at reference temperature
+let deltaH = -83680; // Heat of reaction (J/mol)
+let R = 8.314; // Ideal gas constant (J/(mol K))
+let Tm = 500; // Reference temperature (K)
+
+let alpha = 1; // Adjust as needed
+let Cp = 209; // Adjust as needed
+
+function toggleGraph() {
+  if (reaction) {
+    Km = 0.12;
+    deltaH = -83680;
+    Cp = 209;
+    console.log("exo");
+  } else {
+    Km = 10;
+    deltaH = 65000;
+    Cp = 175;
+    console.log("endo");
+  }
+  equilibriumConversionFromKeCurve.updateCoords();
+  equilibriumConversionFromKeCurve.drawCurve();
+  equilibriumConversionFromEnergyBalanceCurve.updateCoords();
+  equilibriumConversionFromEnergyBalanceCurve.drawCurve();
+}
+
 // variable for the Feed temperature of the graph
 let Tf = 325;
 // variable for the Molar Ratio of the graph
@@ -35,7 +64,7 @@ const graph = new SVG_Graph({
       labels: ["conversion", ""],
       labelFontSize: 17,
       display: [true, true],
-      range: [0, 1],
+      range: [0, 1.01],
       step: 0.2,
       minorTicks: 3,
       majorTickSize: 2,
@@ -49,23 +78,26 @@ const graph = new SVG_Graph({
 });
 
 // Equilibrium conversion calculated from equilibrium constant
+// Black Line
 function equilibriumConversionFromKe(T) {
-  const Km = 0.12; // Equilibrium constant at reference temperature
-  const deltaH = -50000; // Heat of reaction (J/mol)
-  const R = 8.314; // Ideal gas constant (J/(mol K))
-  const Tm = 500; // Reference temperature (K)
+  // const Km = 0.12; // Equilibrium constant at reference temperature
+  // const deltaH = -50000; // Heat of reaction (J/mol)
+  // const R = 8.314; // Ideal gas constant (J/(mol K))
+  // const Tm = 500; // Reference temperature (K)
 
   const Ke = Km * Math.exp((deltaH / R) * (1 / Tm - 1 / T));
   return Ke / (1 + Ke);
 }
 
 // Equilibrium conversion calculated from energy balance
+// Blue Line
 function equilibriumConversionFromEnergyBalance(T) {
-  const alpha = 1; // Adjust as needed
-  const Cp = 50; // Adjust as needed
-  const deltaH = -50000; // Heat of reaction (J/mol)
+  // const alpha = 1; // Adjust as needed
+  // const Cp = 50; // Adjust as needed
+  // const deltaH = -50000; // Heat of reaction (J/mol)
 
   const Xeb = ((alpha + Mr) * Cp * (T - Tf)) / -deltaH;
+  console.log("Molar Ratio: ", Mr);
   return Xeb;
 }
 
@@ -113,6 +145,7 @@ function updateFeedTemperature(feedTemperature) {
   document.getElementById("temperatureValue").innerText =
     "Feed Temperature: " + feedTemperature + " (K)";
 }
+
 function updateMolarRatio(molarRatio) {
   // Update the graph with the new feed temperature
   // Adjust the energy balance curve options
@@ -125,8 +158,30 @@ function updateMolarRatio(molarRatio) {
   // Update the HTML with slider value
   document.getElementById("molarRatioValue").innerText =
     "Molar Ratio of Inert to Reactant in Feed: " + molarRatio;
-  console.log("Mr: ", Mr);
+  // console.log("Mr: ", Mr);
 }
 // Pass the function to the draw
 // window.updateFeedTemperature = updateFeedTemperature;
 // window.updateMolarRatio = updateMolarRatio;
+
+$(() => {
+  // Update the constants of the graph based on which reaction button is clicked
+  $("#exothermic-btn").click(() => {
+    reaction = true;
+    // Change Min and Max of the slider
+    $("#temperature-slider").attr({
+      min: 300,
+      max: 400,
+    });
+    toggleGraph();
+  });
+  $("#endothermic-btn").click(() => {
+    reaction = false;
+    // Change Min and Max of the slider
+    $("#temperature-slider").attr({
+      min: 400,
+      max: 500,
+    });
+    toggleGraph();
+  });
+});

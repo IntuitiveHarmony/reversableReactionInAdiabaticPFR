@@ -1,6 +1,9 @@
 body {
   padding: 1em;
 }
+input {
+  cursor: pointer;
+}
 .nav-bar {
   /* padding: 1em; */
 }
@@ -16,6 +19,8 @@ h1 {
 }
 #slider-container {
   /* margin-top: 1em; */
+  display: flex;
+  flex-direction: row;
   z-index: 10;
 }
 #graph-container {
@@ -24,14 +29,15 @@ h1 {
   /* margin-top: 1em; */
   width: 35em;
   height: 25em;
+  /* width: 80%; */
 }
 #molar-slider {
   display: block;
-  width: 300px;
+  width: 15em;
 }
 #temperature-slider {
   display: block;
-  width: 300px;
+  width: 15em;
 }
 .hide {
   display: none;

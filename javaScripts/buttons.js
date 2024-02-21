@@ -1,4 +1,22 @@
 $(() => {
+  // Toggle reaction type
+  $("#exothermic-btn").click(() => {
+    // Make clicked button green
+    $("#exothermic-btn").removeClass("btn-light");
+    $("#exothermic-btn").addClass("btn-success");
+    // Make other button grey
+    $("#endothermic-btn").removeClass("btn-success");
+    $("#endothermic-btn").addClass("btn-light");
+  });
+  $("#endothermic-btn").click(() => {
+    // Make clicked button green
+    $("#endothermic-btn").removeClass("btn-light");
+    $("#endothermic-btn").addClass("btn-success");
+    // Make other button grey
+    $("#exothermic-btn").removeClass("btn-success");
+    $("#exothermic-btn").addClass("btn-light");
+  });
+
   // Toggle pop-up modals
   $("#directions-button").click(() => {
     $(".overlay").removeClass("hide");

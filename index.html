@@ -25,11 +25,13 @@
       <button type="button" class="btn btn-primary" id="details-button">Details</button>
       <button type="button" class="btn btn-primary" id="about-button">About</button>
     </div>
-    <div class="sliders-container">
+    <div class="slider-container">
       <input id="molar-slider" type="range" min="0" max="1" value=".2" step="0.01" oninput="updateMolarRatio(this.value)">
       <p id="molarRatioValue">Molar Ratio of Inert to Reactant in Feed: .20</p>
       <input id="temperature-slider" type="range" min="300" max="400" value="350" step="1" oninput="updateFeedTemperature(this.value)">
       <p id="temperatureValue">Feed Temperature: 350 (K)</p>
+      <div class="btn btn-success btn-sm" id="exothermic-btn">exothermic</div>
+      <div class="btn btn-light btn-sm" id="endothermic-btn">endothermic</div>
     </div>
   </div>
   <div id="graph-container"></div>
