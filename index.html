@@ -38,12 +38,24 @@
   <div class="directions-container close-modal hide">
     <div class="btn btn-danger btn-sm close-modal-toggle close-button">Close X</div>
     <h4>Directions:</h4>
-    <p>A reversible reaction, A ⇌ B, takes place in an adiabatic plug-flow reactor (PFR). Select either an exothermic (\[CapitalDelta]H<0) or an endothermic (\[CapitalDelta]H>0) reaction. The black curve is the equilibrium conversion as a function of temperature from the van't Hoff equation. The blue line is conversion as a function of temperature from the adiabatic energy balance. The intersection of the curve and the line is the conversion at equilibrium (Subscript[X, e]) and the adiabatic temperature at equilibrium (Subscript[T, e]). You can vary the feed temperature and the molar ratio of inert to reactant in the feed.</p>
+    <p>A reversible reaction, A ⇌ B, takes place in an adiabatic plug-flow reactor (PFR). Select either an exothermic (∆H
+
+      < 0) or an endothermic (∆H> 0) reaction. The black curve is the equilibrium conversion as a function of temperature from the van't Hoff equation. The blue line is conversion as a function of temperature from the adiabatic energy balance. The intersection of the curve and the line is the conversion at equilibrium (X<sub>e</sub>) and the adiabatic temperature at equilibrium (T<sub>e</sub>). You can vary the feed temperature and the molar ratio of inert to reactant in the feed.
+    </p>
   </div>
   <div class="details-container close-modal hide">
     <div class="btn btn-danger btn-sm close-modal-toggle close-button">Close X</div>
     <h4>Details:</h4>
-    <p>h2O ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ac Fe2O3 nisi. Sed aliquet aliquam urna, ut fermentum metus FeSO4 in. Quisque fermentum, MgSO4 quis cursus laoreet, arcu nisi interdum quam, in luctus nunc nisi et turpis. Integer rhoncus CuSO4 augue ac ligula aliquam, in aliquam velit dapibus. Aenean sollicitudin, NH4Cl arcu in laoreet dictum, nisi ligula ultrices quam, nec lacinia ligula turpis vel elit. Fusce aliquet, CO2 eget mollis scelerisque, ligula purus placerat odio, vitae fermentum ipsum arcu ut arcu.</p>
+    <p>For the reversible reaction A ⇌ B with both reactant A and inert component I in the adiabatic PFR feed, the equilibrium constant is:</p>
+    <p>K<sub>e</sub> = K<sub>m</sub><sup>e<sup>[∆H/R (1/T<sub>m</sub> - 1/T)]</sup></sup></p>
+    <p>where K<sub>m</sub> is the equilibrium constant at temperature T<sub>m</sub> (K), ∆H is the heat of reaction (J/mol), R is the ideal gas constant (J/[mol K]), and T is the temperature of the reaction (K).</p>
+    <p>The equilibrium conversion is obtained from the equilibrium constant, assuming ideal gases:</p>
+    <p>X<sub>e</sub> = K<sub>e</sub>/1 + K<sub>e</sub></p>
+    <p>X<sub>EB</sub> = &Epsilon;&alpha;Cp(T - T<sub>f</sub>)/-∆H </p>
+    <p>where X<sub>e</sub> is the equilibrium conversion, X<sub>EB</sub> is the conversion calculated from the energy balance, &alpha; is the ratio in the feed of total mols/mols of reactant, Cp is the heat capacity (J/[mol K]) of both the reactant and the inert, and T<sub>f</sub> is the feed temperature (K).</p>
+    <p>References:</p>
+    <p>[1] H. S. Fogler, Essentials of Chemical Reaction Engineering, Upper Saddle River, NJ: Prentice Hall, 2011 pp. 503\[Dash]505.</p>
+    <p>[2] Reversible Reaction in an Adiabatic Plug-Flow Reactor. <a href="https://learncheme.com/simulations/kinetics-reactor-design/reversible-reaction-in-an-adiabatic-pfr/" target="_blank" rel="noopener noreferrer">https://learncheme.com/simulations/kinetics-reactor-design/reversible-reaction-in-an-adiabatic-pfr/</a></p>
   </div>
   <div class="about-container close-modal hide">
     <div class="btn btn-danger btn-sm close-modal-toggle close-button">Close X</div>

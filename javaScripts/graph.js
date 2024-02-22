@@ -11,11 +11,12 @@ let Cp = 209; // Adjust as needed
 
 function toggleGraph() {
   if (reaction) {
+    // Exothermic
     Km = 0.12;
     deltaH = -83680;
     Cp = 209;
-    console.log("exo");
   } else {
+    // Endothermic
     Km = 10;
     deltaH = 65000;
     Cp = 175;
@@ -26,7 +27,7 @@ function toggleGraph() {
   equilibriumConversionFromEnergyBalanceCurve.updateCoords();
   equilibriumConversionFromEnergyBalanceCurve.drawCurve();
 }
-
+// SLIDER VARIABLES
 // variable for the Feed temperature of the graph
 let Tf = 325;
 // variable for the Molar Ratio of the graph
@@ -96,7 +97,8 @@ function equilibriumConversionFromEnergyBalance(T) {
   // const Cp = 50; // Adjust as needed
   // const deltaH = -50000; // Heat of reaction (J/mol)
 
-  const Xeb = ((alpha + Mr) * Cp * (T - Tf)) / -deltaH;
+  // const Xeb = ((alpha + Mr) * Cp * (T - Tf)) / -deltaH;
+  const Xeb = ((1 + Mr) * Cp * (T - Tf)) / -deltaH;
   console.log("Molar Ratio: ", Mr);
   return Xeb;
 }
@@ -184,4 +186,13 @@ $(() => {
     });
     toggleGraph();
   });
+
+  // Labels for lines on the graph
+  const energyBalanceLabel = $("<text>energy balance</text>");
+  energyBalanceLabel.css({
+    x: 55,
+    y: 85,
+    color: "blue",
+  });
+  $("#equilibrium-conversion-from-ke-curve").append(energyBalanceLabel);
 });
