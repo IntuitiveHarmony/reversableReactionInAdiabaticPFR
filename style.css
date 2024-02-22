@@ -49,7 +49,7 @@ h1 {
   right: 10px; /* Adjust as needed */
 }
 .modal {
-  max-width: 40em;
+  max-width: 42em;
   height: auto; /* Set height to auto for dynamic sizing based on content */
   padding: 1.5em;
   margin: 2.3em;
